@@ -1,0 +1,19 @@
+{
+  "name": "pantilt",
+  "version": "0.0.1",
+  "description": "simple slim stack",
+  "main": "index.js",
+	"scripts": {
+    "preinstall": "node bin/preinstall"
+  },
+  "keywords": [
+    "node",
+    "koa",
+    "webtokens",
+    "socket.io",
+    "vue.js",
+    "js"
+  ],
+  "author": "korgon",
+  "license": "GPL-3.0"
+}
