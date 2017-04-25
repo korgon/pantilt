@@ -9,7 +9,7 @@
 
 <script>
 	var axios = require('axios');
-	
+
 	module.exports = {
 		name: 'login',
 		data: function() {
@@ -29,15 +29,14 @@
 				// TODO ajax login
 				// set user
 				// save jwt into localstorage
-				var user = {
-					name: 'kevin',
-					lastlogin: 'moments ago...'
-				}
-
-				// simulate logging in
-				setTimeout(function() {
+				client.authenticate({ username: this.username, password: this.password }).then(function(user) {
+					console.log(user);
 					self.$emit('validated', user);
-				}, 777);
+				}).catch(function(error) {
+					this.message = 'INVALID CREDENTIALS';
+					this.username = '';
+					this.password = '';
+				})
 			}
 		}
 	}

@@ -30,14 +30,24 @@
 		data: function() {
 			return {
 				currentView: undefined,
-				user: undefined
+				user: undefined,
+				axis: undefined
 			}
 		},
 		created: function() {
 			// TODO
 			// check localstorage for jwt
 			// attempt to connect
-			this.currentView = 'login';
+			// this.currentView = 'login';
+			var comp = this;
+
+			console.log(client);
+			client.init().then(function() {
+				console.log('authorized...');
+				comp.currentView = 'control';
+			}).catch(function(err) {
+				comp.currentView = 'login';
+			});
 		},
 		methods: {
 			validated: function(user) {

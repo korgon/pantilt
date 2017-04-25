@@ -5,8 +5,8 @@
 </template>
 
 <script>
-  // fabric
-  var fabric = require('fabric').fabric;
+	// fabric
+	var fabric = require('fabric').fabric;
 
 	module.exports = {
 		name: 'controller',
