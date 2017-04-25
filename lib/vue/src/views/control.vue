@@ -4,7 +4,7 @@
 	</div>
 </template>
 
-<script>	
+<script>
 	module.exports = {
 		name: 'control',
 		data: function() {
