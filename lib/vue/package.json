@@ -8,7 +8,7 @@
   "author": "korgon",
   "dependencies": {
     "axios": "^0.16.1",
-    "fabric": "^1.7.11",
+    "konva": "^1.6.1",
     "vue": "^2.2.6"
   },
   "devDependencies": {

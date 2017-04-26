@@ -1,6 +1,6 @@
 <template>
 	<div class="footer">
-		© 2016 korgon technologies
+		© 2017 korgon technologies
 	</div>
 </template>
 

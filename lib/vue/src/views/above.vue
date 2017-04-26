@@ -3,7 +3,7 @@
 		<img class="icon" src="/images/icon.png">
 		<span class="title">control</span>
 		<div class="controls">
-			<span v-if="user" @click="logout">logout</span>
+			<span v-if="user" @click="logout">logout {{ user.name }}</span>
 		</div>
 	</div>
 </template>
@@ -14,7 +14,7 @@
 		props: ['user'],
 		methods: {
 			logout: function() {
-				// TODO destroy jwt
+				client.logout();
 				this.$emit('invalidated');
 			}
 		}

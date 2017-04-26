@@ -24,18 +24,18 @@
 		methods: {
 			login: function() {
 				var self = this;
-				this.message = '...authenticating...';
 
 				// TODO ajax login
 				// set user
 				// save jwt into localstorage
 				client.authenticate({ username: this.username, password: this.password }).then(function(user) {
-					console.log(user);
+					self.message = '...validated...';
+					console.log('user', user);
 					self.$emit('validated', user);
 				}).catch(function(error) {
-					this.message = 'INVALID CREDENTIALS';
-					this.username = '';
-					this.password = '';
+					self.message = 'invalid credentials';
+					self.username = '';
+					self.password = '';
 				})
 			}
 		}

@@ -39,14 +39,13 @@
 			// check localstorage for jwt
 			// attempt to connect
 			// this.currentView = 'login';
-			var comp = this;
-
-			console.log(client);
-			client.init().then(function() {
+			var self = this;
+			client.authenticate().then(function(user) {
+				self.user = user;
 				console.log('authorized...');
-				comp.currentView = 'control';
+				self.currentView = 'control';
 			}).catch(function(err) {
-				comp.currentView = 'login';
+				self.currentView = 'login';
 			});
 		},
 		methods: {
