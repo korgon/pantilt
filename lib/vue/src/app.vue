@@ -1,12 +1,18 @@
 <template>
 	<div id="main" v-cloak>
-		<header id="above" class="box"><above :user="user" @invalidated="invalidated"></above></header>
+		<header id="above" class="box">
+			<above :user="user" @invalidated="invalidated"></above>
+		</header>
+
 		<div id="center" class="box">
 			<main id="content" class="box">
-				<component :is="currentView" @validated="validated"></component>
+				<component :is="currentView" @validated="validated" :axii="axii"></component>
 			</main>
 		</div>
-		<footer id="below" class="box"><below></below></footer>
+
+		<footer id="below" class="box">
+			<below></below>
+		</footer>
 	</div>
 </template>
 
@@ -30,28 +36,30 @@
 		data: function() {
 			return {
 				currentView: undefined,
-				user: undefined,
-				axis: undefined
+				axii: undefined
 			}
 		},
 		created: function() {
-			// TODO
-			// check localstorage for jwt
-			// attempt to connect
-			// this.currentView = 'login';
 			var self = this;
 			client.authenticate().then(function(user) {
-				self.user = user;
-				console.log('authorized...');
-				self.currentView = 'control';
+				self.validated(user);
 			}).catch(function(err) {
 				self.currentView = 'login';
 			});
 		},
 		methods: {
 			validated: function(user) {
+				var self = this;
+
 				this.user = user;
-				this.currentView = 'control';
+
+				client.init().then(function(axii) {
+					self.axii = axii;
+					self.currentView = 'control';
+					console.log(self.axis);
+				}).catch(function(err) {
+					console.log('control ', err);
+				});
 			},
 			invalidated: function() {
 				this.user = undefined;

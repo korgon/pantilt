@@ -8,8 +8,6 @@
 </template>
 
 <script>
-	var axios = require('axios');
-
 	module.exports = {
 		name: 'login',
 		data: function() {
@@ -19,18 +17,12 @@
 				message: 'please login'
 			}
 		},
-		created: function() {
-		},
 		methods: {
 			login: function() {
 				var self = this;
 
-				// TODO ajax login
-				// set user
-				// save jwt into localstorage
 				client.authenticate({ username: this.username, password: this.password }).then(function(user) {
 					self.message = '...validated...';
-					console.log('user', user);
 					self.$emit('validated', user);
 				}).catch(function(error) {
 					self.message = 'invalid credentials';

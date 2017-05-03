@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<h4>Control it!</h4>
-		<controller></controller>
+		<controller :axii="axii"></controller>
 	</div>
 </template>
 
@@ -14,12 +14,15 @@
 		components: {
 			controller
 		},
+		props: ['axii'],
 		data: function() {
 			return {
-
 			}
 		},
 		created: function() {
+			var self = this;
+
+
 		},
 		methods: {
 

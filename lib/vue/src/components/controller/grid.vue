@@ -1,21 +1,16 @@
 <template>
-	<div>
-		<h4>User</h4>
-	</div>
+
 </template>
 
 <script>
 	module.exports = {
-		name: 'user',
+		name: 'grid',
+		props: ['axis'],
 		data: function() {
 			return {
-
 			}
 		},
 		created: function() {
-		},
-		methods: {
-
 		}
 	}
 </script>
