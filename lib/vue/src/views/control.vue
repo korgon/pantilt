@@ -1,6 +1,5 @@
 <template>
 	<div>
-		<h4>Control it!</h4>
 		<controller :axii="axii"></controller>
 	</div>
 </template>

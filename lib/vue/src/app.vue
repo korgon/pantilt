@@ -56,7 +56,6 @@
 				client.init().then(function(axii) {
 					self.axii = axii;
 					self.currentView = 'control';
-					console.log(self.axis);
 				}).catch(function(err) {
 					console.log('control ', err);
 				});
