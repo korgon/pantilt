@@ -1,22 +1,23 @@
 {
-	"name": "vuesimple",
-	"version": "0.0.1",
-	"description": "vue simple start",
-	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1"
-	},
-	"author": "korgon",
-	"dependencies": {
-		"axios": "^0.16.1",
-		"vue": "^2.2.6"
-	},
-	"devDependencies": {
-		"css-loader": "^0.25.0",
-		"node-sass": "^3.13.1",
-		"sass-loader": "^4.1.1",
-		"style-loader": "^0.13.2",
-		"uglify-loader": "^1.4.0",
-		"vue-loader": "^9.9.5",
-		"webpack": "^1.15.0"
-	}
+  "name": "vuesimple",
+  "version": "0.0.1",
+  "description": "vue simple start",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "korgon",
+  "dependencies": {
+    "axios": "^0.16.1",
+    "konva": "^1.6.1",
+    "vue": "^2.2.6"
+  },
+  "devDependencies": {
+    "css-loader": "^0.25.0",
+    "node-sass": "^3.13.1",
+    "sass-loader": "^4.1.1",
+    "style-loader": "^0.13.2",
+    "uglify-loader": "^1.4.0",
+    "vue-loader": "^9.9.5",
+    "webpack": "^1.15.0"
+  }
 }
