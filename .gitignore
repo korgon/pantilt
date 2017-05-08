@@ -2,5 +2,8 @@
 **/node_modules/**
 !node_modules/_
 
+# ignore vue build
+lib/vue/dist/**
+
 # ignore annoying files
 .DS_Store
