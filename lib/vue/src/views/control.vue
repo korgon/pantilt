@@ -1,7 +1,5 @@
 <template>
-	<div>
-		<controller :axii="axii"></controller>
-	</div>
+	<controller :axii="axii"></controller>
 </template>
 
 <script>

@@ -1,5 +1,8 @@
 <template>
-	<div id="controller-window"></div>
+	<div class="controller-wrapper">
+		<div class="controller-functions"></div>
+		<div id="controller-window"></div>
+	</div>
 </template>
 
 <script>
@@ -35,24 +38,27 @@
 				self.width = grid && Math.floor(grid.getBoundingClientRect().width);
 
 				// calculate ratio to determine height of grid
-				var panRange = self.axii.pan.bounds.range;
-				var tiltRange = self.axii.tilt.bounds.range;
+				var panRange = self.pan.bounds.range;
+				var tiltRange = self.tilt.bounds.range;
 				self.ratio = self.width / panRange;
 				console.log('ratio:', self.ratio);
 
 				self.height = tiltRange * self.ratio;
 
-				controller.resizeStage(self.width);
+				console.log('resize:', self.width);
+				controller.initialize(self);
 			}
 
 			setTimeout(function() {
 				resizeController();
-				controller.initialize(self);
 			});
 		},
 		methods: {
-			move: function() {
-				console.log('MOVING!!!!!!!!!');
+			move: function(coordinates) {
+				console.log('MOVING!!!!!!!!!', coordinates);
+				this.pan.current.position = coordinates.x;
+				this.tilt.current.position = coordinates.y;
+				// TODO make api calls using clientJS
 			}
 		},
 		destroyed: function() {
@@ -62,7 +68,4 @@
 </script>
 
 <style lang="scss">
-	#controller-window {
-
-	}
 </style>
