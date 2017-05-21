@@ -1,11 +1,11 @@
 <template>
-	<div id="main" v-cloak>
+	<div id="main" class="box" v-cloak>
 		<header id="above" class="box">
 			<above :user="user" @invalidated="invalidated"></above>
 		</header>
 
 		<div id="center" class="box">
-			<main id="content" class="box">
+			<main id="content">
 				<component :is="currentView" @validated="validated" :axii="axii"></component>
 			</main>
 		</div>
@@ -45,6 +45,7 @@
 				self.validated(user);
 			}).catch(function(err) {
 				self.currentView = 'login';
+				client.testSocket();
 			});
 		},
 		methods: {

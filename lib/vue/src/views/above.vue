@@ -30,11 +30,11 @@
 		color: #8a9f9f;
 
 		.icon {
-			height: 4em;
+			height: 6em;
 		}
 
 		.title {
-			font-size: 2em;
+			font-size: 3em;
 		}
 
 		.controls {
