@@ -10,7 +10,7 @@
 		New ideas...
 		Don't use range slider use konva for better accuracy in drawings...
 	*/
-	
+
 	var controller = require('./controller.js');
 
 	module.exports = {

@@ -45,7 +45,6 @@
 				self.validated(user);
 			}).catch(function(err) {
 				self.currentView = 'login';
-				client.testSocket();
 			});
 		},
 		methods: {
