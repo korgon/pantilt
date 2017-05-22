@@ -3,6 +3,8 @@
 !node_modules/_
 
 lib/vue/dist/**
+lib/core/.pan.json
+lib/core/.tilt.json
 
 # ignore annoying files
 .DS_Store

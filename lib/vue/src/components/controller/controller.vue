@@ -53,13 +53,29 @@
 			setTimeout(function() {
 				resizeController();
 			});
+
+			// socket.io events
+			client.socket.on('moved', function(data) {
+				console.log('socket triggered: moved', data);
+				controller.alignShadow();
+			});
+
+			client.socket.on('moving', function(data) {
+				console.log('socket triggered: moving', data);
+				if (data.x && data.y) {
+					controller.updateShadow(data.x, data.y);
+				}
+			});
 		},
 		methods: {
 			move: function(coordinates) {
 				console.log('MOVING!!!!!!!!!', coordinates);
 				this.pan.current.position = coordinates.x;
 				this.tilt.current.position = coordinates.y;
-				// TODO make api calls using clientJS
+				client.axii.move({
+					pan: coordinates.x,
+					tilt: coordinates.y
+				});
 			}
 		},
 		destroyed: function() {
