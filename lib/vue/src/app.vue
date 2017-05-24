@@ -1,12 +1,12 @@
 <template>
 	<div id="main" class="box" v-cloak>
 		<header id="above" class="box">
-			<above :user="user" @invalidated="invalidated"></above>
+			<above :user="user" @logout="logout" @useredit="changeView('user')"></above>
 		</header>
 
 		<div id="center" class="box">
 			<main id="content">
-				<component :is="currentView" @validated="validated" :axii="axii"></component>
+				<component :is="currentView" @validated="validated" @previousView="changeView(previousView)" :user="user" :axii="axii"></component>
 			</main>
 		</div>
 
@@ -35,8 +35,10 @@
 		},
 		data: function() {
 			return {
+				previousView: undefined,
 				currentView: undefined,
-				axii: undefined
+				axii: undefined,
+				views: ['login', 'control', 'user']
 			}
 		},
 		created: function() {
@@ -44,7 +46,7 @@
 			client.authenticate().then(function(user) {
 				self.validated(user);
 			}).catch(function(err) {
-				self.currentView = 'login';
+				self.logout();
 			});
 		},
 		methods: {
@@ -55,15 +57,23 @@
 
 				client.init().then(function(axii) {
 					self.axii = axii;
-					self.currentView = 'control';
+					self.changeView('control');
 				}).catch(function(err) {
 					console.log('control ', err);
 				});
 			},
-			invalidated: function() {
-				this.user = undefined;
-				this.currentView = 'login';
+			logout: function() {
+				this.user = client.logout();;
+				this.changeView('login');
 			},
+			changeView: function(view) {
+				if (this.views.indexOf(view) != -1) {
+					if (this.previousView != this.currentView) {
+						this.previousView = this.currentView;
+					}
+					this.currentView = view;
+				}
+			}
 		}
 	}
 </script>

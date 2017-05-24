@@ -1,19 +1,19 @@
 @import 'scss/_mixins.scss';
 @import 'scss/_colors.scss';
 
-html { font-size: 1em; }
+html { font-size: 16px; }
 
-h1 { font-size: 2.07em; }
+h1 { font-size: 2rem; }
 
-h2 { font-size: 1.72em; }
+h2 { font-size: 1.75rem; }
 
-h3 { font-size: 1.44em; }
+h3 { font-size: 1.5rem; }
 
-h4 { font-size: 1.2em; }
+h4 { font-size: 1.2rem; }
 
-small { font-size: 0.833em; }
+small { font-size: 0.8rem; }
 
-.box { padding: 1.25em; }
+.box { padding: 1.25rem; }
 
 [v-cloak] {
 	display: none;

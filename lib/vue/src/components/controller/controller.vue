@@ -1,7 +1,9 @@
 <template>
 	<div class="controller-wrapper">
-		<div class="controller-functions"></div>
 		<div id="controller-window"></div>
+		<div class="controller-functions">
+			
+		</div>
 	</div>
 </template>
 
@@ -55,6 +57,11 @@
 			});
 
 			// socket.io events
+			client.socket.on('move', function(data) {
+				console.log('socket triggered: move', data);
+				controller.moveIndicator(data.x, data.y);
+			});
+
 			client.socket.on('moved', function(data) {
 				console.log('socket triggered: moved', data);
 				controller.alignShadow();
@@ -63,7 +70,7 @@
 			client.socket.on('moving', function(data) {
 				console.log('socket triggered: moving', data);
 				if (data.x && data.y) {
-					controller.updateShadow(data.x, data.y);
+					controller.moveShadow(data.x, data.y);
 				}
 			});
 		},
