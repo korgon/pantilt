@@ -3,7 +3,7 @@
 		<img class="icon" src="/images/icon.png">
 		<span class="title">control</span>
 		<div class="user" v-if="user">
-			<span v-bind:class="{ open: showDropdown }" v-on:click="toggleDropdown($event)" v-on:keyup.esc="closeDropdown($event)" v-on:blur="closeDropdown($event)">{{ user.name.substring(0) }}</span>
+			<span v-bind:class="{ open: showDropdown }" v-on:click="toggleDropdown($event)">{{ user.name.substring(0) }}</span>
 			<ul class="controls" v-bind:class="{ open: showDropdown }">
 				<li @click="useredit">settings</li>
 				<li @click="logout">logout</li>
@@ -31,6 +31,7 @@
 				console.log('closing dropdown');
 				e && e.preventDefault;
 				e && e.stopPropagation();
+				console.log(e);
 				this.showDropdown = false;
 			},
 			logout: function() {
@@ -78,6 +79,7 @@
 				border: .3rem solid #e0f5f5;
 				border-radius: 50%;
 				transition: border-radius 500ms linear;
+				outline: none;
 				&.open {
 					border-radius: 0;
 				}

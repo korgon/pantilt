@@ -2,7 +2,7 @@
 	<div class="controller-wrapper">
 		<div id="controller-window"></div>
 		<div class="controller-functions">
-			
+
 		</div>
 	</div>
 </template>
@@ -38,18 +38,20 @@
 			function resizeController() {
 				var grid = document.getElementById('controller-window');
 
-				self.width = grid && Math.floor(grid.getBoundingClientRect().width);
+				if (grid) {
+					self.width = grid && Math.floor(grid.getBoundingClientRect().width);
 
-				// calculate ratio to determine height of grid
-				var panRange = self.pan.bounds.range;
-				var tiltRange = self.tilt.bounds.range;
-				self.ratio = self.width / panRange;
-				console.log('ratio:', self.ratio);
+					// calculate ratio to determine height of grid
+					var panRange = self.pan.bounds.range;
+					var tiltRange = self.tilt.bounds.range;
+					self.ratio = self.width / panRange;
+					console.log('ratio:', self.ratio);
 
-				self.height = tiltRange * self.ratio;
+					self.height = tiltRange * self.ratio;
 
-				console.log('resize:', self.width);
-				controller.initialize(self);
+					console.log('resize:', self.width);
+					controller.initialize(self);
+				}
 			}
 
 			setTimeout(function() {

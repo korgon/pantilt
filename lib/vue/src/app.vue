@@ -68,7 +68,7 @@
 			},
 			changeView: function(view) {
 				if (this.views.indexOf(view) != -1) {
-					if (this.previousView != this.currentView) {
+					if (this.previousView != this.currentView && view != this.currentView) {
 						this.previousView = this.currentView;
 					}
 					this.currentView = view;
