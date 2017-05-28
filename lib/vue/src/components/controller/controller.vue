@@ -8,11 +8,6 @@
 </template>
 
 <script>
-	/*
-		New ideas...
-		Don't use range slider use konva for better accuracy in drawings...
-	*/
-
 	var controller = require('./controller.js');
 
 	module.exports = {
@@ -33,6 +28,7 @@
 			var self = this;
 
 			// adjust variables when window is resized
+			window.removeEventListener('resize', resizeController);
 			window.addEventListener('resize', resizeController);
 
 			function resizeController() {
@@ -56,24 +52,6 @@
 
 			setTimeout(function() {
 				resizeController();
-			});
-
-			// socket.io events
-			client.socket.on('move', function(data) {
-				console.log('socket triggered: move', data);
-				controller.moveIndicator(data.x, data.y);
-			});
-
-			client.socket.on('moved', function(data) {
-				console.log('socket triggered: moved', data);
-				controller.alignShadow();
-			});
-
-			client.socket.on('moving', function(data) {
-				console.log('socket triggered: moving', data);
-				if (data.x && data.y) {
-					controller.moveShadow(data.x, data.y);
-				}
 			});
 		},
 		methods: {

@@ -6,7 +6,13 @@
 
 		<div id="center" class="box">
 			<main id="content">
-				<component :is="currentView" @validated="validated" @previousView="changeView(previousView)" :user="user" :axii="axii"></component>
+				<component
+					:is="currentView"
+					@validated="validated"
+					@previousView="changeView(previousView)"
+					:user="user"
+					:axii="axii">
+				</component>
 			</main>
 		</div>
 
@@ -59,7 +65,7 @@
 					self.axii = axii;
 					self.changeView('control');
 				}).catch(function(err) {
-					console.log('control ', err);
+					console.error('client init failed! ', err);
 				});
 			},
 			logout: function() {

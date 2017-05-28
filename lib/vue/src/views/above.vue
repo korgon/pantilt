@@ -3,7 +3,7 @@
 		<img class="icon" src="/images/icon.png">
 		<span class="title">control</span>
 		<div class="user" v-if="user">
-			<span v-bind:class="{ open: showDropdown }" v-on:click="toggleDropdown($event)">{{ user.name.substring(0) }}</span>
+			<span v-bind:class="{ open: showDropdown }" v-on:click="toggleDropdown($event)">{{ user.name.substring(0,1) }}</span>
 			<ul class="controls" v-bind:class="{ open: showDropdown }">
 				<li @click="useredit">settings</li>
 				<li @click="logout">logout</li>
@@ -21,6 +21,15 @@
 				showDropdown: false
 			}
 		},
+		created: function() {
+			var self = this;
+			document.removeEventListener('click', documentClick);
+			document.addEventListener('click', documentClick);
+
+			function documentClick() {
+				self.closeDropdown();
+			}
+		},
 		methods: {
 			toggleDropdown: function(e) {
 				e && e.preventDefault;
@@ -28,19 +37,15 @@
 				this.showDropdown = !this.showDropdown;
 			},
 			closeDropdown: function(e) {
-				console.log('closing dropdown');
 				e && e.preventDefault;
 				e && e.stopPropagation();
-				console.log(e);
 				this.showDropdown = false;
 			},
 			logout: function() {
-				this.closeDropdown();
 				client.logout();
 				this.$emit('logout');
 			},
 			useredit: function() {
-				this.closeDropdown();
 				this.$emit('useredit')
 			}
 		}
@@ -56,11 +61,11 @@
 		color: #8a9f9f;
 
 		.icon {
-			height: 6em;
+			height: 4em;
 		}
 
 		.title {
-			font-size: 3em;
+			font-size: 2em;
 		}
 
 		.user {
@@ -70,18 +75,22 @@
 			color: #8a9f9f;
 			span {
 				display: inline-block;
-				width: 2.6rem;
-				height: 2.6rem;
 				text-align: center;
-				line-height: 2.6rem;
-				font-size: 1.3rem;
 				text-transform: uppercase;
 				border: .3rem solid #e0f5f5;
+				width: 2.6rem;
+				height: 2.6rem;
+				line-height: 2.6rem;
+				font-size: 1.3rem;
 				border-radius: 50%;
-				transition: border-radius 500ms linear;
+				transition: all 500ms linear;
 				outline: none;
 				&.open {
-					border-radius: 0;
+					border: .0325rem solid #d0dada;
+					width: 2.0rem;
+					height: 2.0rem;
+					line-height: 2.0rem;
+					font-size: 1rem;
 				}
 				&:hover {
 					cursor: pointer;
@@ -90,12 +99,13 @@
 			.controls {
 				display: none;
 				border: .0325rem solid #d0dada;
+				border-radius: 0;
 				background-color: #fff;
 				margin: 0;
 				padding: 0;
 				list-style: none;
 				position: absolute;
-				right: 0;
+				right: -.3rem;
 				text-align: center;
 				top: 3.2rem;
 				z-index: 3;
