@@ -4,6 +4,7 @@
 		<div class="controller-functions">
 			Do things
 			<div @click="goHome()">Go Home</div>
+			<div @click="setHome()">Set Home</div>
 		</div>
 	</div>
 </template>
@@ -67,6 +68,21 @@
 			},
 			goHome: function() {
 				this.move({ x: this.pan.current.home, y: this.tilt.current.home });
+			},
+			setHome: function() {
+				var self = this;
+
+				client.axii.setHome({
+					pan: this.pan.current.position,
+					tilt: this.tilt.current.position
+				}).then(function(axii) {
+					self.pan.current.home = axii.pan.current.home;
+					self.tilt.current.home = axii.tilt.current.home;
+					controller.moveThing('home', {
+						x: self.pan.current.home,
+						y: self.tilt.current.home
+					});
+				});
 			}
 		},
 		destroyed: function() {
