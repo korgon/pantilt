@@ -98,6 +98,7 @@
 			}
 			.controls {
 				display: none;
+				box-shadow: 0 2px 4px rgba(0,0,0,.16);
 				border: .0325rem solid #d0dada;
 				border-radius: 0;
 				background-color: #fff;

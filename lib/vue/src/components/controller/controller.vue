@@ -1,11 +1,11 @@
 <template>
 	<div class="controller-wrapper">
-		<div id="controller-window"></div>
 		<div class="controller-functions">
-			Do things
-			<div @click="goHome()">Go Home</div>
-			<div @click="setHome()">Set Home</div>
+			<div @click="goHome()" class="icon_wrap click" title="go home"><img class="icon" src="/images/icon_home.png"></div>
+			<div @click="setHome()" class="icon_wrap click" title="set home"><img class="icon" src="/images/icon_set_home.png"></div>
+			<div class="icon_wrap"><img class="icon" src="/images/icon_speed.png"></div>
 		</div>
+		<div id="controller-window"></div>
 	</div>
 </template>
 
@@ -92,4 +92,24 @@
 </script>
 
 <style lang="scss">
+	.controller-wrapper {
+		display: flex;
+		#controller-window {
+			flex: 1 1;
+		}
+		.controller-functions {
+			margin: 0 10px;
+			flex: 0 2 40px;
+			.click {
+				cursor: pointer;
+			}
+			.icon_wrap {
+				padding: 5px;
+				.icon {
+					width: 100%;
+					height: auto;
+				}
+			}
+		}
+	}
 </style>
