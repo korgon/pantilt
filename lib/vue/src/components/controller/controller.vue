@@ -2,7 +2,8 @@
 	<div class="controller-wrapper">
 		<div id="controller-window"></div>
 		<div class="controller-functions">
-
+			Do things
+			<div @click="goHome()">Go Home</div>
 		</div>
 	</div>
 </template>
@@ -63,6 +64,9 @@
 					pan: coordinates.x,
 					tilt: coordinates.y
 				});
+			},
+			goHome: function() {
+				this.move({ x: this.pan.current.home, y: this.tilt.current.home });
 			}
 		},
 		destroyed: function() {
