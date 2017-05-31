@@ -5,35 +5,22 @@
 <script>
 	module.exports = {
 		name: 'slider',
-		props: ['axis', 'width', 'height', 'wrapperWidth'],
+		props: ['max', 'min', 'position', 'orientation'],
 		data: function() {
 			return {
-				name: this.axis.name,
-				type: this.axis.type,
-				orientation: this.axis.type == 'pan' ? 'horizontal' : 'vertical',
-				min: this.axis.bounds.min,
-				max: this.axis.bounds.max,
-				position: this.axis.current.position,
 				lastPosition: undefined,
-				timer: undefined
+				watchTimer: undefined
 			}
 		},
 		computed: {
 			verticalStyle: function() {
-				if (this.orientation == 'vertical') {
-					return {
-						top: ((this.height / 2) - 5) + 'px',
-						left: - (((this.width - this.height) / 2 ) - 23) + 'px',
-						width: this.height + 'px'
-					}
-				}
-			},
-			theAxis: function() {
-				return {
-					name: this.name,
-					type: this.type,
-					position: this.position
-				}
+				// if (this.orientation == 'vertical') {
+				// 	return {
+				// 		top: ((this.height / 2) - 5) + 'px',
+				// 		left: - (((this.width - this.height) / 2 ) - 23) + 'px',
+				// 		width: this.height + 'px'
+				// 	}
+				// }
 			}
 		},
 		watch: {
@@ -42,17 +29,17 @@
 				var self = this;
 				var waitTime = 150;
 
-				if (!self.timer) {
+				if (!self.watchTimer) {
 					self.lastPosition = self.position;
 				}
 
-				this.timer = this.timer || setInterval(function() {
+				this.watchTimer = this.watchTimer || setInterval(function() {
 					var now = Date.now();
 					if (self.position == self.lastPosition) {
 						console.log('yup');
-						self.$emit('move', self.theAxis);
-						clearInterval(self.timer);
-						self.timer = undefined;
+						self.$emit('changed', self.position);
+						clearInterval(self.watchTimer);
+						self.watchTimer = undefined;
 					} else {
 						self.lastPosition = self.position;
 					}

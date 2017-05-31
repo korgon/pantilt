@@ -66,6 +66,7 @@
 
 		.title {
 			font-size: 2em;
+			margin-left: 1rem;
 		}
 
 		.user {
