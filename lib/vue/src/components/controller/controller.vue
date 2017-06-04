@@ -150,9 +150,13 @@
 				font-size: 10px;
 				display: flex;
 				flex-direction: column;
+				justify-content: center;
+				align-items: center;
 				.function_wrap {
 					text-align: center;
 					flex: 1 0 100%;
+					height: 30px;
+					width: 30px;
 					padding: 5px;
 					.icon {
 						width: 100%;
