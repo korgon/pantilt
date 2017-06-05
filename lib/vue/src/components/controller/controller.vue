@@ -7,7 +7,7 @@
 					<div @click="goHome()" class="function_wrap click" title="go home"><img class="icon" src="/images/icon_home.png"></div>
 					<div @click="setHome()" class="function_wrap click" title="set home"><img class="icon" src="/images/icon_set_home.png"></div>
 					<div @click="setSpeed()" class="function_wrap click" title="set speed"><img class="icon" src="/images/icon_speed.png"></div>
-					<div @click="toggleControl('coordinates')" class="function_wrap"><span class="coordinates">(x, y)</span></div>
+					<div @click="toggleControl('coordinates')" class="function_wrap click"><span class="coordinates">(x, y)</span></div>
 					<div class=""
 				</div>
 			</div>
@@ -157,6 +157,7 @@
 					flex: 1 0 100%;
 					height: 30px;
 					width: 30px;
+					line-height: 30px;
 					padding: 5px;
 					.icon {
 						width: 100%;
