@@ -121,6 +121,14 @@
 						y: self.tilt.current.home
 					});
 				});
+			},
+			syncAxiiPosition: function(loc) {
+				this.pan.current.position = loc.x;
+				this.tilt.current.position = loc.y;
+			},
+			syncAxiiHome: function(loc) {
+				this.pan.current.home = loc.x;
+				this.tilt.current.home = loc.y;
 			}
 		},
 		destroyed: function() {
