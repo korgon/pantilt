@@ -6,5 +6,7 @@ lib/vue/dist/**
 lib/core/.pan.json
 lib/core/.tilt.json
 
+lib/config/user.json
+
 # ignore annoying files
 .DS_Store
