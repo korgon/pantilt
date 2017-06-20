@@ -1,4 +1,9 @@
 {
-	"username": "admin",
-	"password": "admin"
+    "username": "admin",
+    "password": "admin",
+    "log": [
+        "6/19/2017, 11:17:37 PM - login: from ::ffff:127.0.0.1",
+        "6/19/2017, 11:18:31 PM - login: from ::ffff:127.0.0.1",
+        "6/19/2017, 11:22:34 PM - login: from ::ffff:127.0.0.1"
+    ]
 }
