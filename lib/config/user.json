@@ -67,6 +67,12 @@
             "message": "updated authentication credentials",
             "level": "medium",
             "datetime": 1498025401042
+        },
+        {
+            "message": "user logged in",
+            "ip": "::ffff:127.0.0.1",
+            "level": "low",
+            "datetime": 1498025631301
         }
     ]
 }

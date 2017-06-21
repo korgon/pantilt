@@ -1,6 +1,6 @@
 <template>
 	<div class="header">
-		<span @click="mainView">
+		<span @click="mainView" class="header-logo">
 			<img class="icon" src="/images/icon.png">
 			<span class="title">control</span>
 		</span>
@@ -66,11 +66,16 @@
 		align-items: center;
 		color: #8a9f9f;
 
+		.header-logo {
+			cursor: pointer;
+		}
 		.icon {
 			height: 4em;
+			vertical-align: middle;
 		}
 
 		.title {
+			vertical-align: middle;
 			font-size: 2em;
 			margin-left: 1rem;
 		}

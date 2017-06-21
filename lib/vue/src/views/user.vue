@@ -132,14 +132,17 @@
 	}
 	.access-log {
 		border-spacing: 3px;
+		border-collapse: collapse;
 		.heading {
-			border-bottom: 1px solid #333;
+			border-bottom: 1px solid #ddd;
+		}
+		th, td {
+			padding: 4px 9px;
 		}
 		th {
 			text-align: left;
 		}
 		td {
-			padding: 4px 6px;
 			&.level-low {
 				color: #41d241;
 			}
