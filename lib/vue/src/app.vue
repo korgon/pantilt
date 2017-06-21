@@ -1,13 +1,14 @@
 <template>
 	<div id="main" class="box" v-cloak>
 		<header id="above" class="box">
-			<above :user="user" @logout="logout" @useredit="changeView('user')"></above>
+			<above :user="user" @logout="logout" @mainView="goHome" @useredit="changeView('user')"></above>
 		</header>
 
 		<div id="center" class="box">
 			<main id="content">
 				<component
 					:is="currentView"
+					@logout="logout"
 					@validated="validated"
 					@previousView="changeView(previousView)"
 					:user="user"
@@ -78,6 +79,13 @@
 						this.previousView = this.currentView;
 					}
 					this.currentView = view;
+				}
+			},
+			goHome: function() {
+				if (this.user) {
+					this.changeView('control');
+				} else {
+					this.changeView('login');
 				}
 			}
 		}

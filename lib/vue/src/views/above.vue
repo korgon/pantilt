@@ -1,7 +1,10 @@
 <template>
 	<div class="header">
-		<img class="icon" src="/images/icon.png">
-		<span class="title">control</span>
+		<span @click="mainView">
+			<img class="icon" src="/images/icon.png">
+			<span class="title">control</span>
+		</span>
+
 		<div class="user" v-if="user">
 			<span v-bind:class="{ open: showDropdown }" v-on:click="toggleDropdown($event)">{{ user.name.substring(0,1) }}</span>
 			<ul class="controls" v-bind:class="{ open: showDropdown }">
@@ -47,6 +50,9 @@
 			},
 			useredit: function() {
 				this.$emit('useredit')
+			},
+			mainView: function() {
+				this.$emit('mainView');
 			}
 		}
 	}
