@@ -1,78 +1,18 @@
 {
-    "username": "admin",
-    "password": "admin",
+    "username": "kevin",
+    "password": "kevin",
     "log": [
         {
-            "message": "user logged in",
-            "ip": "::ffff:127.0.0.1",
-            "level": "low",
-            "datetime": 1498021316265
-        },
-        {
-            "message": "failed login attempt",
-            "details": "admin addy",
-            "ip": "::ffff:127.0.0.1",
-            "level": "high",
-            "datetime": 1498021322870
-        },
-        {
-            "message": "failed login attempt",
-            "details": "admin nope",
-            "ip": "::ffff:127.0.0.1",
-            "level": "high",
-            "datetime": 1498021326023
-        },
-        {
-            "message": "user logged in",
-            "ip": "::ffff:127.0.0.1",
-            "level": "low",
-            "datetime": 1498021328785
-        },
-        {
-            "message": "user logged in",
-            "ip": "::ffff:127.0.0.1",
-            "level": "low",
-            "datetime": 1498022460760
-        },
-        {
             "message": "updated authentication credentials",
+            "ip": "127.0.0.1",
             "level": "medium",
-            "datetime": 1498024845792
-        },
-        {
-            "message": "failed login attempt",
-            "details": "kevin",
-            "ip": "::ffff:127.0.0.1",
-            "level": "high",
-            "datetime": 1498024853123
+            "datetime": 1498026912609
         },
         {
             "message": "user logged in",
-            "ip": "::ffff:127.0.0.1",
+            "ip": "127.0.0.1",
             "level": "low",
-            "datetime": 1498024856090
-        },
-        {
-            "message": "updated authentication credentials",
-            "level": "medium",
-            "datetime": 1498025382164
-        },
-        {
-            "message": "user logged in",
-            "ip": "::ffff:127.0.0.1",
-            "level": "low",
-            "datetime": 1498025386417
-        },
-        {
-            "message": "updated authentication credentials",
-            "level": "medium",
-            "datetime": 1498025401042
-        },
-        {
-            "message": "user logged in",
-            "ip": "::ffff:127.0.0.1",
-            "level": "low",
-            "datetime": 1498025631301
+            "datetime": 1498026918034
         }
     ]
 }

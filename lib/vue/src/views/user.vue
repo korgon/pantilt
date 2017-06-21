@@ -68,7 +68,7 @@
 					entry.time = 'unknown';
 					if (entry.datetime) {
 						let date = new Date(entry.datetime);
-						entry.time = date.toLocaleString();
+						entry.time = date.toLocaleString({} ,{ hour12:false });
 					}
 
 					return entry;
