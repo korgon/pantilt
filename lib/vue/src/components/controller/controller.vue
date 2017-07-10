@@ -3,24 +3,50 @@
 		<div class="controller-wrapper">
 			<div class="controller-functions">
 				<div class="functions">
-					<div @click="toggleControl('grid')" class="function_wrap click" title="grid display"><img class="icon" :src="gridImage"></div>
-					<div @click="goHome()" class="function_wrap click" title="go home"><img class="icon" src="/images/icon_home.png"></div>
-					<div @click="setHome()" class="function_wrap click" title="set home"><img class="icon" src="/images/icon_set_home.png"></div>
-					<div @click="setSpeed()" class="function_wrap click" title="set speed"><img class="icon" src="/images/icon_speed.png"></div>
-					<div @click="toggleControl('coordinates')" class="function_wrap click"><span class="coordinates">(x, y)</span></div>
-					<div class=""
+					<div class="function">
+						<div @click="toggleControl('grid')" class="function_wrap" title="grid display"><img class="icon" :src="gridImage"></div>
+					</div>
+
+					<div class="function">
+						<div @click="goHome()" class="function_wrap" title="go home"><img class="icon" src="/images/icon_home.png"></div>
+					</div>
+
+					<div class="function">
+						<div @click="setHome()" class="function_wrap" title="set home"><img class="icon" src="/images/icon_set_home.png"></div>
+					</div>
+
+					<div class="function">
+						<div @click="toggleControlMenu('speed')" class="function_wrap" title="set speed" v-bind:class="{ open: controls.menus.speed }">
+							<img class="icon" src="/images/icon_speed.png">
+							<div class="function_wrap__container slider" v-show="controls.menus.speed" @click.stop>
+								<slider @changed="setSpeed" :position="pan.current.speed" :min="pan.speed.min" :max="pan.speed.max"></slider>
+							</div>
+						</div>
+					</div>
+
+					<div class="function">
+						<div @click="toggleControl('coordinates')" class="function_wrap"><span class="coordinates">(x, y)</span></div>
+					</div>
 				</div>
 			</div>
+
 			<div id="controller-window"></div>
 		</div>
 	</div>
 </template>
 
 <script>
+	// main scripting
 	var controller = require('./controller.js');
+
+	// components
+	var slider = require('./slider.vue');
 
 	module.exports = {
 		name: 'controller',
+		components: {
+			slider
+		},
 		props: ['axii'],
 		data: function() {
 			return {
@@ -37,7 +63,10 @@
 				invertY: false,
 				controls: {
 					grid: true,
-					coordinates: true
+					coordinates: true,
+					menus: {
+						speed: false
+					}
 				}
 			}
 		},
@@ -104,8 +133,22 @@
 					controller.toggleThing(control, this.controls[control]);
 				}
 			},
+			toggleControlMenu: function(menu) {
+				this.controls.menus[menu] = !this.controls.menus[menu];
+			},
 			goHome: function() {
 				this.move({ x: this.pan.current.home, y: this.tilt.current.home });
+			},
+			setSpeed: function(value) {
+				var self = this;
+
+				client.axii.setSpeed({
+					pan: value,
+					tilt: value
+				}).then(function(axii) {
+					self.pan.current.speed = axii.pan.current.speed;
+					self.tilt.current.speed = axii.tilt.current.speed;
+				});
 			},
 			setHome: function() {
 				var self = this;
@@ -147,29 +190,57 @@
 		display: flex;
 		#controller-window {
 			flex: 1 1;
+			z-index: 1;
 		}
 		.controller-functions {
 			margin: 0 10px;
 			flex: 0 0 40px;
-			.click {
-				cursor: pointer;
-			}
+			z-index: 3;
 			.functions {
 				font-size: 10px;
 				display: flex;
 				flex-direction: column;
 				justify-content: center;
 				align-items: center;
-				.function_wrap {
-					text-align: center;
+				cursor: pointer;
+				.function {
+					position: relative;
 					flex: 1 0 100%;
 					height: 30px;
 					width: 30px;
 					line-height: 30px;
 					padding: 5px;
-					.icon {
-						width: 100%;
-						height: auto;
+					.function_wrap {
+						text-align: center;
+						&.open {
+							display: flex;
+							justify-content: center;
+							align-items: center;
+							position: absolute;
+							overflow: hidden;
+							height: 40px;
+							top: 0;
+							left: 0;
+							padding-left: 5px;
+							border-radius: 40px;
+							background-color: #333;
+							box-shadow: 0 2px 4px rgba(0,0,0,.16);
+						}
+						.icon {
+							display: inline-block;
+							width: 30px;
+							height: auto;
+							max-height: 100%;
+						}
+
+						.function_wrap__container {
+							display: inline-block;
+							background-color: #333;
+							&.slider {
+								width: 150px;
+								padding-right: 20px;
+							}
+						}
 					}
 				}
 			}

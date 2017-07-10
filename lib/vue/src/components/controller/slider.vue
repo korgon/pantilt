@@ -1,47 +1,40 @@
 <template>
-	<input type="range" v-model="position" :min="min" :max="max" class="controller-slider" :class="orientation" v-bind:style="verticalStyle">
+	<input type="range" v-model="sliderPosition" :min="min" :max="max" class="controller-slider">
 </template>
 
 <script>
 	module.exports = {
 		name: 'slider',
-		props: ['max', 'min', 'position', 'orientation'],
+		props: ['max', 'min', 'position'],
 		data: function() {
 			return {
+				sliderPosition: this.position,
 				lastPosition: undefined,
 				watchTimer: undefined
 			}
 		},
 		computed: {
-			verticalStyle: function() {
-				// if (this.orientation == 'vertical') {
-				// 	return {
-				// 		top: ((this.height / 2) - 5) + 'px',
-				// 		left: - (((this.width - this.height) / 2 ) - 23) + 'px',
-				// 		width: this.height + 'px'
-				// 	}
-				// }
-			}
+		},
+		created: function() {
+			// do things after creation
 		},
 		watch: {
-			position: function() {
+			sliderPosition: function() {
 				// only emit move event after position has stabilized
 				var self = this;
 				var waitTime = 150;
 
 				if (!self.watchTimer) {
-					self.lastPosition = self.position;
+					self.lastPosition = self.sliderPosition;
 				}
 
 				this.watchTimer = this.watchTimer || setInterval(function() {
-					var now = Date.now();
-					if (self.position == self.lastPosition) {
-						console.log('yup');
-						self.$emit('changed', self.position);
+					if (self.sliderPosition == self.lastPosition) {
+						self.$emit('changed', self.sliderPosition);
 						clearInterval(self.watchTimer);
 						self.watchTimer = undefined;
 					} else {
-						self.lastPosition = self.position;
+						self.lastPosition = self.sliderPosition;
 					}
 				}, waitTime);
 			}
@@ -51,11 +44,12 @@
 
 <style lang="scss">
 	$slider_width: 100%;
-	$slider_bar_color: #eee;
-	$slider_bar_focus_color: #ddd;
+	$slider_background_color: #333;
+	$slider_bar_color: #222;
+	$slider_bar_focus_color: #222;
 	$slider_bar_border_radius: 3px;
 	$slider_bar_height: 6px;
-	$slider_cursor_color: #8a9f9f;
+	$slider_cursor_color: #289797;
 	$slider_cursor_size: 16px;
 	$slider_cursor_border_radius: 50%;
 
@@ -63,8 +57,9 @@
 		box-sizing: border-box;
 		-webkit-appearance: none;
 		width: $slider_width;
+		background-color: $slider_background_color;
 		// ff fix
-		border: 1px solid white;
+		// border: 1px solid $slider_bar_color;
 
 		// track
 		&::-webkit-slider-runnable-track {
@@ -139,15 +134,6 @@
 			width: $slider_cursor_size;
 			border-radius: $slider_cursor_border_radius;
 			background: $slider_cursor_color;
-		}
-
-		&.vertical {
-			position: absolute;
-			-webkit-transform:rotate(270deg);
-			-moz-transform:rotate(270deg);
-			-o-transform:rotate(270deg);
-			-ms-transform:rotate(270deg);
-			transform:rotate(270deg);
 		}
 	}
 </style>

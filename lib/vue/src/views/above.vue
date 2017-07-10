@@ -2,7 +2,7 @@
 	<div class="header">
 		<span @click="mainView" class="header-logo">
 			<img class="icon" src="/images/icon.png">
-			<span class="title">control</span>
+			<span class="title"></span>
 		</span>
 
 		<div class="user" v-if="user">
@@ -64,7 +64,7 @@
 		justify-content: left;
 		align-content: center;
 		align-items: center;
-		color: #8a9f9f;
+		color: #e0f5f5;
 
 		.header-logo {
 			cursor: pointer;
@@ -113,7 +113,7 @@
 				box-shadow: 0 2px 4px rgba(0,0,0,.16);
 				border: .0325rem solid #d0dada;
 				border-radius: 0;
-				background-color: #fff;
+				background-color: #333;
 				margin: 0;
 				padding: 0;
 				list-style: none;

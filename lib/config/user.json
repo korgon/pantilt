@@ -13,6 +13,50 @@
             "ip": "127.0.0.1",
             "level": "low",
             "datetime": 1498026918034
+        },
+        {
+            "message": "failed login attempt",
+            "details": "admin",
+            "ip": "::1",
+            "level": "high",
+            "datetime": 1498104569371
+        },
+        {
+            "message": "user logged in",
+            "ip": "::1",
+            "level": "low",
+            "datetime": 1498104582118
+        },
+        {
+            "message": "user logged in",
+            "ip": "::1",
+            "level": "low",
+            "datetime": 1498110000248
+        },
+        {
+            "message": "user logged in",
+            "ip": "::1",
+            "level": "low",
+            "datetime": 1499484696633
+        },
+        {
+            "message": "user logged in",
+            "ip": "::1",
+            "level": "low",
+            "datetime": 1499660740792
+        },
+        {
+            "message": "failed login attempt",
+            "details": "korgon",
+            "ip": "::1",
+            "level": "high",
+            "datetime": 1499661409928
+        },
+        {
+            "message": "user logged in",
+            "ip": "::1",
+            "level": "low",
+            "datetime": 1499661416563
         }
     ]
 }
