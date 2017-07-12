@@ -2,11 +2,11 @@
 	<div class="header">
 		<span @click="mainView" class="header-logo">
 			<img class="icon" src="/images/icon.png">
-			<span class="title"></span>
+			<span class="title">></span>
 		</span>
 
 		<div class="user" v-if="user">
-			<span v-bind:class="{ open: showDropdown }" v-on:click="toggleDropdown($event)">{{ user.name.substring(0,1) }}</span>
+			<span :class="{ open: showDropdown }" @click.stop="toggleDropdown()">{{ user.name.substring(0,1) }}</span>
 			<ul class="controls" v-bind:class="{ open: showDropdown }">
 				<li @click="useredit">settings</li>
 				<li @click="logout">logout</li>
@@ -35,8 +35,6 @@
 		},
 		methods: {
 			toggleDropdown: function(e) {
-				e && e.preventDefault;
-				e && e.stopPropagation();
 				this.showDropdown = !this.showDropdown;
 			},
 			closeDropdown: function(e) {
@@ -64,7 +62,7 @@
 		justify-content: left;
 		align-content: center;
 		align-items: center;
-		color: #e0f5f5;
+		color: #444;
 
 		.header-logo {
 			cursor: pointer;
@@ -89,7 +87,7 @@
 				display: inline-block;
 				text-align: center;
 				text-transform: uppercase;
-				border: .3rem solid #e0f5f5;
+				border: .3rem solid #1a7272;
 				width: 2.6rem;
 				height: 2.6rem;
 				line-height: 2.6rem;
@@ -98,7 +96,7 @@
 				transition: all 500ms linear;
 				outline: none;
 				&.open {
-					border: .0325rem solid #d0dada;
+					border: .0325rem solid #666;
 					width: 2.0rem;
 					height: 2.0rem;
 					line-height: 2.0rem;
@@ -111,7 +109,7 @@
 			.controls {
 				display: none;
 				box-shadow: 0 2px 4px rgba(0,0,0,.16);
-				border: .0325rem solid #d0dada;
+				border: .0325rem solid #666;
 				border-radius: 0;
 				background-color: #333;
 				margin: 0;
@@ -129,7 +127,7 @@
 				li {
 					padding: 7px;
 					&:hover {
-						background-color: #e0f5f5;
+						background-color: #444;
 						cursor: pointer;
 					}
 				}

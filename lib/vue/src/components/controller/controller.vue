@@ -4,6 +4,10 @@
 			<div class="controller-functions">
 				<div class="functions">
 					<div class="function">
+						<div @click="toggleControl('coordinates')" class="function_wrap" title="coordinates"><img class="icon" :src="coordinatesImage"></div>
+					</div>
+
+					<div class="function">
 						<div @click="toggleControl('grid')" class="function_wrap" title="grid display"><img class="icon" :src="gridImage"></div>
 					</div>
 
@@ -16,21 +20,24 @@
 					</div>
 
 					<div class="function">
-						<div @click="toggleControlMenu('speed')" class="function_wrap" title="set speed" v-bind:class="{ open: controls.menus.speed }">
+						<div @click.stop="toggleControlMenu('speed')" class="function_wrap" title="set speed" v-bind:class="{ open: controls.menus.speed }">
 							<img class="icon" src="/images/icon_speed.png">
-							<div class="function_wrap__container slider" v-show="controls.menus.speed" @click.stop>
+							<div class="function_wrap__container slider" @click.stop>
 								<slider @changed="setSpeed" :position="pan.current.speed" :min="pan.speed.min" :max="pan.speed.max"></slider>
 							</div>
 						</div>
 					</div>
 
 					<div class="function">
-						<div @click="toggleControl('coordinates')" class="function_wrap"><span class="coordinates">(x, y)</span></div>
+						<div @click="" class="function_wrap" title="settings"><img class="icon" src="/images/icon_settings.png"></div>
 					</div>
 				</div>
 			</div>
 
-			<div id="controller-window"></div>
+			<div class="controller-window">
+				<div id="controller-overlay"></div>
+				<div id="controller-display"></div>
+			</div>
 		</div>
 	</div>
 </template>
@@ -77,17 +84,32 @@
 				} else {
 					return "/images/icon_grid_off.png";
 				}
+			},
+			coordinatesImage: function() {
+				if (this.controls.coordinates) {
+					return "/images/icon_coordinates.png";
+				} else {
+					return "/images/icon_coordinates_off.png";
+				}
 			}
 		},
 		created: function() {
 			var self = this;
 
-			// adjust variables when window is resized
+			// closeMenus on page clicks
+			function documentClick() {
+				self.toggleControlMenu();
+			}
+
+			// remove event listeners on recreation
+			document.removeEventListener('click', documentClick);
+			document.addEventListener('click', documentClick);
 			window.removeEventListener('resize', resizeController);
 			window.addEventListener('resize', resizeController);
 
+			// adjust variables when window is resized
 			function resizeController() {
-				var grid = document.getElementById('controller-window');
+				var grid = document.getElementById('controller-overlay');
 
 				if (grid) {
 					self.width = grid && Math.floor(grid.getBoundingClientRect().width);
@@ -134,7 +156,13 @@
 				}
 			},
 			toggleControlMenu: function(menu) {
-				this.controls.menus[menu] = !this.controls.menus[menu];
+				if (menu && typeof(this.controls.menus[menu]) != 'undefined') {
+					this.controls.menus[menu] = !this.controls.menus[menu];
+				} else {
+					for (menu in this.controls.menus) {
+						this.controls.menus[menu] = false;
+					}
+				}
 			},
 			goHome: function() {
 				this.move({ x: this.pan.current.home, y: this.tilt.current.home });
@@ -188,14 +216,21 @@
 	}
 	.controller-wrapper {
 		display: flex;
-		#controller-window {
+
+		.controller-window {
 			flex: 1 1;
 			z-index: 1;
+			position: relative;
+			#controller-overlay {
+			}
+			#controller-display {
+			}
 		}
 		.controller-functions {
 			margin: 0 10px;
 			flex: 0 0 40px;
 			z-index: 3;
+
 			.functions {
 				font-size: 10px;
 				display: flex;
@@ -203,6 +238,7 @@
 				justify-content: center;
 				align-items: center;
 				cursor: pointer;
+
 				.function {
 					position: relative;
 					flex: 1 0 100%;
@@ -210,36 +246,62 @@
 					width: 30px;
 					line-height: 30px;
 					padding: 5px;
+
 					.function_wrap {
 						text-align: center;
+						display: flex;
+						justify-content: flex-start;
+						align-items: center;
+						position: absolute;
+						overflow: hidden;
+						height: 40px;
+						max-width: 40px;
+						border-radius: 40px;
+						top: 0;
+						left: 0;
+						background-color: #222;
+						transition: max-width 0.3s ease;
+
 						&.open {
-							display: flex;
-							justify-content: center;
-							align-items: center;
-							position: absolute;
-							overflow: hidden;
-							height: 40px;
-							top: 0;
-							left: 0;
-							padding-left: 5px;
-							border-radius: 40px;
-							background-color: #333;
+							max-width: 300px;
 							box-shadow: 0 2px 4px rgba(0,0,0,.16);
+							background-color: #333;
+							transition: max-width 1s ease;
+
+							.icon {
+								opacity: 1;
+							}
+
+							.function_wrap__container {
+								opacity: 1;
+								transition: width 0.6s ease;
+								&.slider {
+									width: 150px;
+								}
+							}
 						}
+
+						&:hover {
+							.icon {
+								opacity: 1;
+							}
+						}
+
 						.icon {
 							display: inline-block;
 							width: 30px;
 							height: auto;
 							max-height: 100%;
+							margin: 5px;
+							opacity: 0.5;
 						}
 
 						.function_wrap__container {
 							display: inline-block;
-							background-color: #333;
-							&.slider {
-								width: 150px;
-								padding-right: 20px;
-							}
+							opacity: 0.3;
+							width: 0;
+							padding: 0 20px 0 10px;
+							transition: width 0.6s ease;
 						}
 					}
 				}
