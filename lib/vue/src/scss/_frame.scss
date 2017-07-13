@@ -18,7 +18,7 @@ small { font-size: 0.8rem; }
 
 .box { padding: 1.25rem; }
 
-input, button {
+input[type='text'], input[type='password'] {
 	background-color: #000;
 	border: 1px solid #444;
 	color: #1a7272;

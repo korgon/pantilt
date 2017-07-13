@@ -1,7 +1,7 @@
 <template>
 	<div class="login-wrapper">
 		<p v-if="message">{{ message }}</p>
-		<input name="username" v-model="username" @keyup.enter="login" ref="usernameInput" autofocus></input>
+		<input type="text" name="username" v-model="username" @keyup.enter="login" ref="usernameInput" autofocus></input>
 		<input name="password" v-model="password" type="password" @keyup.enter="login"></input>
 		<button @click="login">login</button>
 	</div>

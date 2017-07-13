@@ -5,7 +5,7 @@
 			<p v-if="message">{{ message }}</p>
 			<div>
 				<label>username</label>
-				<input @keyup="checkInputs()" name="username" v-model="username"></input>
+				<input @keyup="checkInputs()" name="username" v-model="username" type="text"></input>
 			</div>
 
 			<div>

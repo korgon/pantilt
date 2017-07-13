@@ -147,6 +147,18 @@
             "ip": "::1",
             "level": "low",
             "datetime": 1499915064504
+        },
+        {
+            "message": "user logged in",
+            "ip": "::1",
+            "level": "low",
+            "datetime": 1499915247451
+        },
+        {
+            "message": "user logged in",
+            "ip": "::1",
+            "level": "low",
+            "datetime": 1499915441667
         }
     ]
 }
