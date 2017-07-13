@@ -2,7 +2,6 @@
 	<div class="header">
 		<span @click="mainView" class="header-logo">
 			<img class="icon" src="/images/icon.png">
-			<span class="title">></span>
 		</span>
 
 		<div class="user" v-if="user">

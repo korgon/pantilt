@@ -57,6 +57,96 @@
             "ip": "::1",
             "level": "low",
             "datetime": 1499661416563
+        },
+        {
+            "message": "failed authentication credentials update",
+            "details": "kevin -> kevin",
+            "ip": "::1",
+            "level": "high",
+            "datetime": 1499914106720
+        },
+        {
+            "message": "updated authentication credentials",
+            "ip": "::1",
+            "level": "medium",
+            "datetime": 1499914116023
+        },
+        {
+            "message": "user logged in",
+            "ip": "::1",
+            "level": "low",
+            "datetime": 1499914126810
+        },
+        {
+            "message": "user logged in",
+            "ip": "::1",
+            "level": "low",
+            "datetime": 1499914205230
+        },
+        {
+            "message": "failed login attempt",
+            "details": "k",
+            "ip": "::1",
+            "level": "high",
+            "datetime": 1499914212668
+        },
+        {
+            "message": "failed login attempt",
+            "details": "",
+            "ip": "::1",
+            "level": "high",
+            "datetime": 1499914214852
+        },
+        {
+            "message": "failed login attempt",
+            "details": "k",
+            "ip": "::1",
+            "level": "high",
+            "datetime": 1499914217659
+        },
+        {
+            "message": "failed login attempt",
+            "ip": "::1",
+            "level": "high",
+            "datetime": 1499914379962
+        },
+        {
+            "message": "failed login attempt",
+            "details": "k",
+            "ip": "::1",
+            "level": "high",
+            "datetime": 1499914467934
+        },
+        {
+            "message": "user logged in",
+            "ip": "::1",
+            "level": "low",
+            "datetime": 1499914470561
+        },
+        {
+            "message": "updated authentication credentials",
+            "ip": "::1",
+            "level": "medium",
+            "datetime": 1499914493597
+        },
+        {
+            "message": "failed login attempt",
+            "details": "kevin",
+            "ip": "::1",
+            "level": "high",
+            "datetime": 1499914658356
+        },
+        {
+            "message": "user logged in",
+            "ip": "::1",
+            "level": "low",
+            "datetime": 1499914661033
+        },
+        {
+            "message": "user logged in",
+            "ip": "::1",
+            "level": "low",
+            "datetime": 1499915064504
         }
     ]
 }

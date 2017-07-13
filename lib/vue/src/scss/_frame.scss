@@ -1,7 +1,10 @@
 @import 'scss/_mixins.scss';
 @import 'scss/_colors.scss';
 
-html { font-size: 16px; }
+html {
+	font-size: 16px;
+	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
 
 h1 { font-size: 2rem; }
 
@@ -14,6 +17,30 @@ h4 { font-size: 1.2rem; }
 small { font-size: 0.8rem; }
 
 .box { padding: 1.25rem; }
+
+input, button {
+	background-color: #000;
+	border: 1px solid #444;
+	color: #1a7272;
+	height: 30px;
+	width: 150px;
+	font-size: 16px;
+	padding: 0 10px;
+	outline: none;
+}
+
+button {
+	background-color: #444;
+	border: 1px solid #333;
+	color: #000;
+	text-transform: uppercase;
+	font-weight: bold;
+	font-size: 10px;
+	&:hover {
+		background-color: #333;
+		cursor: pointer;
+	}
+}
 
 [v-cloak] {
 	display: none;
