@@ -31,6 +31,10 @@
 					<div class="function">
 						<div @click="" class="function_wrap" title="settings"><img class="icon" src="/images/icon_settings.png"></div>
 					</div>
+
+					<div class="function">
+						<div @click="" class="function_wrap" title="login details"><img class="icon" src="/images/icon_key.png"></div>
+					</div>
 				</div>
 			</div>
 

@@ -2,7 +2,7 @@
 	<div>
 		<div class="credential-inputs">
 			<h4>Change Credentials</h4>
-			<p v-if="message">{{ message }}</p>
+			<p class="message" v-if="message">{{ message }}</p>
 			<div>
 				<label>username</label>
 				<input @keyup="checkInputs()" name="username" v-model="username" type="text"></input>
@@ -20,7 +20,7 @@
 
 			<div>
 				<label>new password</label>
-				<input @keyup="checkInputs()" name="verification" v-model="verification" type="password"></input>
+				<input @keyup="checkInputs()" name="verification" v-model="verification" type="password" @keyup.enter="save"></input>
 			</div>
 
 			<div>
@@ -59,7 +59,8 @@
 				verification: undefined,
 				message: undefined,
 				validated: false,
-				rawlog: []
+				rawlog: [],
+				serverTime: undefined
 			}
 		},
 		computed: {
@@ -79,7 +80,8 @@
 			var self = this;
 
 			client.user.getLog().then(function(data) {
-				self.rawlog = data
+				self.rawlog = data.log;
+				self.serverTime = data.time;
 			});
 		},
 		methods: {
@@ -108,12 +110,12 @@
 					newpassword: this.newpassword,
 					newusername: this.username
 				}).then(function(resp) {
-					console.log('resp', resp);
 					if (resp.message == 'success') {
 						self.$emit('logout');
 					} else {
 						self.message = resp.message;
 						self.resetInputs();
+						self.checkInputs();
 					}
 				});
 			},
@@ -130,6 +132,27 @@
 			display: block;
 		}
 	}
+	.message {
+		background-color: #2d0909;
+		color: #794646;
+		display: inline-block;
+		position: relative;
+		padding: 5px 10px 5px 30px;
+		border: 1px solid #794646;
+		border-radius: 6px;
+		font-size: 10px;
+		margin: 0 0 20px;
+		&:before {
+			content: '*';
+			font-size: 24px;
+			display: block;
+			position: absolute;
+			left: 9px;
+			top: 1px;
+			height: 12px;
+			width: 12px;
+		}
+	}
 	.access-log {
 		border-spacing: 3px;
 		border-collapse: collapse;
@@ -144,13 +167,13 @@
 		}
 		td {
 			&.level-low {
-				color: #41d241;
+				color: #5b8c5b;
 			}
 			&.level-medium {
 				color: #b98f42;
 			}
 			&.level-high {
-				color: #ec4e4e;
+				color: #794646;
 			}
 		}
 	}
