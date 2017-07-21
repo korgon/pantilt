@@ -3,6 +3,50 @@
     "password": "kevin",
     "log": [
         {
+            "message": "user logged in",
+            "ip": "::1",
+            "level": "low",
+            "datetime": 1500613988572
+        },
+        {
+            "message": "user logged in",
+            "ip": "::1",
+            "level": "low",
+            "datetime": 1500613086484
+        },
+        {
+            "message": "user logged in",
+            "ip": "::1",
+            "level": "low",
+            "datetime": 1500604460968
+        },
+        {
+            "message": "failed login attempt",
+            "details": "",
+            "ip": "::1",
+            "level": "high",
+            "datetime": 1500604458832
+        },
+        {
+            "message": "failed login attempt",
+            "details": "k",
+            "ip": "::1",
+            "level": "high",
+            "datetime": 1500604458794
+        },
+        {
+            "message": "user logged in",
+            "ip": "::1",
+            "level": "low",
+            "datetime": 1500347435523
+        },
+        {
+            "message": "updated authentication credentials",
+            "ip": "::1",
+            "level": "medium",
+            "datetime": 1500347432349
+        },
+        {
             "message": "failed authentication credentials update",
             "details": "kevin -> kevin",
             "ip": "::1",
@@ -234,16 +278,10 @@
             "datetime": 1498026912609
         },
         {
-            "message": "updated authentication credentials",
-            "ip": "::1",
-            "level": "medium",
-            "datetime": 1500347432349
-        },
-        {
             "message": "user logged in",
             "ip": "::1",
             "level": "low",
-            "datetime": 1500347435523
+            "datetime": 1500617236599
         }
     ]
 }

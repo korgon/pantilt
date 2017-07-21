@@ -1,5 +1,5 @@
 <template>
-	<div class="controller-box">
+	<div class="controller-box" v-bind:class="{ 'full-screen': controls.fullscreen }">
 		<div class="controller-wrapper">
 			<div class="controller-functions">
 				<div class="functions">
@@ -29,16 +29,12 @@
 					</div>
 
 					<div class="function">
-						<div @click="" class="function_wrap" title="settings"><img class="icon" src="/images/icon_settings.png"></div>
-					</div>
-
-					<div class="function">
-						<div @click="" class="function_wrap" title="login details"><img class="icon" src="/images/icon_key.png"></div>
+						<div @click="toggleControl('fullscreen'); resize();" class="function_wrap" title="fullscreen"><img class="icon" src="/images/icon_fullscreen.png"></div>
 					</div>
 				</div>
 			</div>
 
-			<div class="controller-window">
+			<div class="controller-window" v-bind:style="sizeStyle">
 				<div id="controller-overlay"></div>
 				<div id="controller-display"></div>
 			</div>
@@ -75,6 +71,7 @@
 				controls: {
 					grid: true,
 					coordinates: true,
+					fullscreen: false,
 					menus: {
 						speed: false
 					}
@@ -95,6 +92,12 @@
 				} else {
 					return "/images/icon_coordinates_off.png";
 				}
+			},
+			sizeStyle: function() {
+				return {
+					height: this.height + 'px',
+					width: this.width + 'px'
+				}
 			}
 		},
 		created: function() {
@@ -113,6 +116,7 @@
 
 			// adjust variables when window is resized
 			function resizeController() {
+				// need to do some debouncing or something... this is killing performance...
 				var grid = document.getElementById('controller-overlay');
 
 				if (grid) {
@@ -136,6 +140,11 @@
 			});
 		},
 		methods: {
+			resize: function() {
+				setTimeout(function() {
+					window.dispatchEvent(new Event('resize'));
+				});
+			},
 			move: function(coordinates) {
 				var self = this;
 				console.log('MOVING!!!!!!!!!', coordinates);
@@ -215,19 +224,42 @@
 <style lang="scss">
 	.controller-box {
 		&.full-screen {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
 
+			.controller-functions {
+				position: absolute;
+				top: 0;
+				left: 0;
+			}
 		}
 	}
 	.controller-wrapper {
+		position: relative;
 		display: flex;
 
 		.controller-window {
 			flex: 1 1;
 			z-index: 1;
 			position: relative;
+			#controller-overlay, #controller-display {
+				position: absolute;
+				top: 0;
+				bottom: 0;
+				left: 0;
+				right: 0;
+			}
 			#controller-overlay {
+				z-index: 2;
+				opacity: 1;
 			}
 			#controller-display {
+				z-index: 1;
+				background: url('/images/background.jpg') no-repeat;
+		    background-size: 100%;
 			}
 		}
 		.controller-functions {
@@ -263,7 +295,6 @@
 						border-radius: 40px;
 						top: 0;
 						left: 0;
-						background-color: #222;
 						transition: max-width 0.3s ease;
 
 						&.open {

@@ -116,7 +116,7 @@
 			flex-direction: column;
 			flex: 1;
 			#content {
-
+				max-width: 100%;
 			}
 		}
 
