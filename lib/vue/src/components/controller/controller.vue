@@ -108,11 +108,17 @@
 				self.toggleControlMenu();
 			}
 
+			var redrawResize = debounce(function() {
+				resizeController();
+				// controller.redraw();
+				controller.resize();
+			}, 10);
+
 			// remove event listeners on recreation
 			document.removeEventListener('click', documentClick);
 			document.addEventListener('click', documentClick);
-			window.removeEventListener('resize', resizeController);
-			window.addEventListener('resize', resizeController);
+			window.removeEventListener('resize', redrawResize);
+			window.addEventListener('resize', redrawResize);
 
 			// adjust variables when window is resized
 			function resizeController() {
@@ -122,20 +128,34 @@
 				if (grid) {
 					self.width = grid && Math.floor(grid.getBoundingClientRect().width);
 
+					self.startWidth = self.startWidth || self.width;
+
 					// calculate ratio to determine height of grid
 					var panRange = self.pan.bounds.range;
 					var tiltRange = self.tilt.bounds.range;
-					self.ratio = self.width / panRange;
-					console.log('ratio:', self.ratio);
+					self.ratio = self.startWidth / panRange;
 
-					self.height = tiltRange * self.ratio;
-
-					console.log('resize:', self.width);
-					controller.initialize(self);
+					self.height = tiltRange * (self.width / panRange);
 				}
 			}
 
+			function debounce(func, wait, immediate) {
+				var timeout;
+				return function() {
+					var context = this, args = arguments;
+					var later = function() {
+						timeout = null;
+						if (!immediate) func.apply(context, args);
+					};
+					var callNow = immediate && !timeout;
+					clearTimeout(timeout);
+					timeout = setTimeout(later, wait);
+					if (callNow) func.apply(context, args);
+				};
+			}
+
 			setTimeout(function() {
+				controller.initialize(self);
 				resizeController();
 			});
 		},
@@ -258,8 +278,9 @@
 			}
 			#controller-display {
 				z-index: 1;
-				background: url('/images/background.jpg') no-repeat;
-		    background-size: 100%;
+				// background: url('/images/background.jpg') no-repeat;
+				// background-size: 100%;
+				background-color: #222;
 			}
 		}
 		.controller-functions {

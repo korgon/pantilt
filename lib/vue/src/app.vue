@@ -98,7 +98,6 @@
 	body {
 		margin: 0;
 		color: #8a9f9f;
-		background-color: #222;
 	}
 
 	#main {
@@ -106,6 +105,7 @@
 		min-height: 100vh;
 		flex-direction: column;
 		box-sizing: border-box;
+		background-color: #222;
 
 		#above {
 
